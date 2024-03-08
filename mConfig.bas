@@ -7,41 +7,41 @@ Private Declare Function GetPrivateProfileInt Lib "kernel32" Alias "GetPrivatePr
 Public CfgFile As String
 Public CfgName As String
 
-'ÕâÊÇÎÒÓÃµÄ×î¶àµÄÄ£¿é£¬¼¸ºõËùÓÐµÄVB´°¿ÚÏîÄ¿¶¼Ê¹ÓÃÁË£¬ÔÚÏîÄ¿´æµµÖÐ×îÔçÊ¹ÓÃÓÚ2009Äê£¬¼òµ¥·½±ã¡£
-'Ö§³ÖµÄ¿Ø¼þÓÐTextBox¡¢CheckBox¡¢OptionButton¡¢ComboBox¡¢Label¡£
-'¼´Ê¹ºóÀ´¿ª·¢c# winformÏîÄ¿£¬ÎÒÒ²ÊÇÏÈÐ´Ò»¸öÀàËÆµÄ¹¦ÄÜÀà£¬ÓÃÓÚ±£´æ´°¿ÚÀïµÄ¿Ø¼þÅäÖÃ¡£
+'è¿™æ˜¯æˆ‘ç”¨çš„æœ€å¤šçš„æ¨¡å—ï¼Œå‡ ä¹Žæ‰€æœ‰çš„VBçª—å£é¡¹ç›®éƒ½ä½¿ç”¨äº†ï¼Œåœ¨é¡¹ç›®å­˜æ¡£ä¸­æœ€æ—©ä½¿ç”¨äºŽ2009å¹´ï¼Œç®€å•æ–¹ä¾¿ã€‚
+'æ”¯æŒçš„æŽ§ä»¶æœ‰TextBoxã€CheckBoxã€OptionButtonã€ComboBoxã€Labelã€‚
+'å³ä½¿åŽæ¥å¼€å‘c# winformé¡¹ç›®ï¼Œæˆ‘ä¹Ÿæ˜¯å…ˆå†™ä¸€ä¸ªç±»ä¼¼çš„åŠŸèƒ½ç±»ï¼Œç”¨äºŽä¿å­˜çª—å£é‡Œçš„æŽ§ä»¶é…ç½®ã€‚
 
-'×¢Òâ£ºÐèÒª½«±£´æÅäÖÃµÄ¿Ø¼þµÄtagÊôÐÔÉèÖÃÒ»¸öÅäÖÃÃû³Æ²ÅÉúÐ§¡£
-'×¢Òâ£ºÐèÒª½«±£´æÅäÖÃµÄ¿Ø¼þµÄtagÊôÐÔÉèÖÃÒ»¸öÅäÖÃÃû³Æ²ÅÉúÐ§¡£
-'×¢Òâ£ºÐèÒª½«±£´æÅäÖÃµÄ¿Ø¼þµÄtagÊôÐÔÉèÖÃÒ»¸öÅäÖÃÃû³Æ²ÅÉúÐ§¡£
+'æ³¨æ„ï¼šéœ€è¦å°†ä¿å­˜é…ç½®çš„æŽ§ä»¶çš„tagå±žæ€§è®¾ç½®ä¸€ä¸ªé…ç½®åç§°æ‰ç”Ÿæ•ˆã€‚
+'æ³¨æ„ï¼šéœ€è¦å°†ä¿å­˜é…ç½®çš„æŽ§ä»¶çš„tagå±žæ€§è®¾ç½®ä¸€ä¸ªé…ç½®åç§°æ‰ç”Ÿæ•ˆã€‚
+'æ³¨æ„ï¼šéœ€è¦å°†ä¿å­˜é…ç½®çš„æŽ§ä»¶çš„tagå±žæ€§è®¾ç½®ä¸€ä¸ªé…ç½®åç§°æ‰ç”Ÿæ•ˆã€‚
 
 
-'Ê¹ÓÃ·Ç³£µÄ¼òµ¥£¬Ö»ÐèÒªÔÚÎÄ±¾¿ò:
+'ä½¿ç”¨éžå¸¸çš„ç®€å•:
 'Private Sub Form_Load()
-'    mConfig.LoadControls Me  '¼ÓÔØÅäÖÃµ½¿Ø¼þ
+'    mConfig.LoadControls Me  'åŠ è½½é…ç½®åˆ°æŽ§ä»¶
 'End Sub
 '
 'Private Sub Command1_Click()
-'    mConfig.SaveControls Me  '½«¿Ø¼þÊý¾Ý±£´æµ½ÅäÖÃ
+'    mConfig.SaveControls Me  'å°†æŽ§ä»¶æ•°æ®ä¿å­˜åˆ°é…ç½®
 'End Sub
 
 
 
-'³õÊ¼»¯¼ì²â
+'åˆå§‹åŒ–æ£€æµ‹
 Private Sub init_check()
     If Len(CfgFile) = 0 Then CfgFile = App.Path & "\Config.ini"
     If Len(CfgName) = 0 Then CfgName = "Configure"
 End Sub
 
 
-'Ð´ÈëÅäÖÃÎÄ¼þ
+'å†™å…¥é…ç½®æ–‡ä»¶
 Public Sub CfgWrite(key As String, value As String)
     Call init_check
     WritePrivateProfileString CfgName, key, value, CfgFile
 End Sub
 
 
-'¶ÁÈ¡ÅäÖÃString
+'è¯»å–é…ç½®String
 Public Function CfgRead(key As String) As String
     Dim retstr As String
     retstr = String(1024, 0)
@@ -50,7 +50,7 @@ Public Function CfgRead(key As String) As String
     CfgRead = Trim(Replace(retstr, Chr(0), ""))
 End Function
 
-'¶ÁÈ¡ÅäÖÃLong
+'è¯»å–é…ç½®Long
 Public Function CfgReadLong(key As String) As Long
     On Error GoTo errline
     Call init_check
@@ -58,7 +58,7 @@ Public Function CfgReadLong(key As String) As Long
 errline:
 End Function
 
-'±£´æ´°ÌåÖÐ¿Ø¼þÐÅÏ¢µ½ÅäÖÃ
+'ä¿å­˜çª—ä½“ä¸­æŽ§ä»¶ä¿¡æ¯åˆ°é…ç½®
 Public Sub SaveControls(frm As Form)
     On Error Resume Next
     Dim objX As Object
@@ -66,22 +66,22 @@ Public Sub SaveControls(frm As Form)
     For Each objX In frm.Controls
         k = CStr(objX.Tag)
         If Len(k) > 1 Then
-            If TypeOf objX Is TextBox Then 'ÎÄ±¾¿ò,ÅÅ³ý¶àÐÐ
+            If TypeOf objX Is TextBox Then 'æ–‡æœ¬æ¡†,æŽ’é™¤å¤šè¡Œ
                 If objX.MultiLine = False Then CfgWrite k, objX.Text
-            ElseIf TypeOf objX Is CheckBox Then '¶àÑ¡
+            ElseIf TypeOf objX Is CheckBox Then 'å¤šé€‰
                 CfgWrite k, objX.value
-            ElseIf TypeOf objX Is OptionButton Then 'µ¥Ñ¡
+            ElseIf TypeOf objX Is OptionButton Then 'å•é€‰
                 CfgWrite k, objX.value
-            ElseIf TypeOf objX Is ComboBox Then 'ÏÂÀ­ÁÐ±í
+            ElseIf TypeOf objX Is ComboBox Then 'ä¸‹æ‹‰åˆ—è¡¨
                 CfgWrite k, objX.ListIndex
-            ElseIf TypeOf objX Is Label Then '±êÇ©
+            ElseIf TypeOf objX Is Label Then 'æ ‡ç­¾
                 CfgWrite k, objX.Caption
             End If
         End If
     Next
 End Sub
 
-'¼ÓÔØ´°ÌåÖÐ¿Ø¼þµÄÅäÖÃ
+'åŠ è½½çª—ä½“ä¸­æŽ§ä»¶çš„é…ç½®
 Public Sub LoadControls(frm As Form)
     On Error Resume Next
     Dim objX As Object
@@ -94,28 +94,28 @@ Public Sub LoadControls(frm As Form)
         k = CStr(objX.Tag)
         If Len(k) > 1 Then
             s = CfgRead(k)
-            If TypeOf objX Is TextBox Then 'ÎÄ±¾¿ò,ÅÅ³ý¶àÐÐ
+            If TypeOf objX Is TextBox Then 'æ–‡æœ¬æ¡†,æŽ’é™¤å¤šè¡Œ
                 If objX.MultiLine = False Then
                     objX.Text = s
                 End If
-            ElseIf TypeOf objX Is CheckBox Then '¶àÑ¡
+            ElseIf TypeOf objX Is CheckBox Then 'å¤šé€‰
                 If s = "1" Then
                     objX.value = 1
                 Else
                     objX.value = 0
                 End If
-            ElseIf TypeOf objX Is OptionButton Then 'µ¥Ñ¡
+            ElseIf TypeOf objX Is OptionButton Then 'å•é€‰
                 If s = "True" Then
                     objX.value = True
                 Else
                     objX.value = False
                 End If
-            ElseIf TypeOf objX Is ComboBox Then 'ÏÂÀ­ÁÐ±í
+            ElseIf TypeOf objX Is ComboBox Then 'ä¸‹æ‹‰åˆ—è¡¨
                 i = CfgReadLong(k)
                 If objX.ListCount > 0 Then
                     objX.ListIndex = IIf(i < objX.ListCount, i, 0)
                 End If
-            ElseIf TypeOf objX Is Label Then '±êÇ©
+            ElseIf TypeOf objX Is Label Then 'æ ‡ç­¾
                 i = CfgReadLong(k)
                 objX.Caption = i
             End If
@@ -123,20 +123,20 @@ Public Sub LoadControls(frm As Form)
     Next
 End Sub
 
-'±£´æµ¥¸ö¿Ø¼þµÄÅäÖÃ£¬¶ÁÈ¡µÄ·½·¨Ò²ÊÇÀàËÆ£¬¼¸ºõÓÃ²»µ½ËùÒÔ¾ÍÀÁµÃÐ´ÁË
+'ä¿å­˜å•ä¸ªæŽ§ä»¶çš„é…ç½®ï¼Œè¯»å–çš„æ–¹æ³•ä¹Ÿæ˜¯ç±»ä¼¼ï¼Œå‡ ä¹Žç”¨ä¸åˆ°æ‰€ä»¥å°±æ‡’å¾—å†™äº†
 Public Sub SaveControl(ctl As Variant, vl As String)
     Dim k As String
-    If TypeOf ctl Is TextBox Then 'ÎÄ±¾¿ò,ÅÅ³ý¶àÐÐ
+    If TypeOf ctl Is TextBox Then 'æ–‡æœ¬æ¡†,æŽ’é™¤å¤šè¡Œ
         If ctl.MultiLine = False Then
             CfgWrite k, ctl.Text
         End If
-    ElseIf TypeOf ctl Is CheckBox Then '¶àÑ¡
+    ElseIf TypeOf ctl Is CheckBox Then 'å¤šé€‰
         CfgWrite k, ctl.value
-    ElseIf TypeOf ctl Is OptionButton Then 'µ¥Ñ¡
+    ElseIf TypeOf ctl Is OptionButton Then 'å•é€‰
         CfgWrite k, ctl.value
-    ElseIf TypeOf ctl Is ComboBox Then 'ÏÂÀ­ÁÐ±í
+    ElseIf TypeOf ctl Is ComboBox Then 'ä¸‹æ‹‰åˆ—è¡¨
         CfgWrite k, ctl.ListIndex
-    ElseIf TypeOf ctl Is Label Then '±êÇ©
+    ElseIf TypeOf ctl Is Label Then 'æ ‡ç­¾
         CfgWrite k, ctl.Caption
     End If
 End Sub
