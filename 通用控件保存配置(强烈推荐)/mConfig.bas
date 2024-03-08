@@ -1,15 +1,14 @@
 Attribute VB_Name = "mConfig"
 Option Explicit
+'------------------------------
+'https://github.dev/xiiicode/QuickVB6
+'------------------------------
 Private Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As Any, ByVal lpDefault As String, ByVal lpReturnedString As String, ByVal nSize As Long, ByVal lpFileName As String) As Long
 Private Declare Function WritePrivateProfileString Lib "kernel32" Alias "WritePrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As Any, ByVal lpString As Any, ByVal lpFileName As String) As Long
 Private Declare Function GetPrivateProfileInt Lib "kernel32" Alias "GetPrivateProfileIntA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal nDefault As Long, ByVal lpFileName As String) As Long
 
-Public CfgFile As String
-Public CfgName As String
-
-'------------------------------
-'https://github.dev/xiiicode/QuickVB6
-'------------------------------
+Public CfgFile As String  '配置文件的目录，默认是程序目录下 config.ini
+Public CfgName As String  '配置项的应用域名称，默认为 Configure
 
 '初始化检测
 Private Sub init_check()
